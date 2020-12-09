@@ -13,8 +13,17 @@ script:
   - docker --version # print the version for logging
   - cd udagram-user-api && docker build -t udagram-user-api . && cd .. # change directory to udagram-user-api and build docker image
   - docker tag udagram-user-api amirbahrami67/udagram-user-api:latest # tag udagram-user-api
+  - cd udagram-feed-api && docker build -t udagram-feed-api . && cd .. # change directory to udagram-feed-api and build docker image
+  - docker tag udagram-feed-api amirbahrami67/udagram-feed-api:latest # tag udagram-feed-api
+  - cd udagram-frontend && docker build -t udagram-frontend . && cd .. # change directory to udagram-frontend and build docker image
+  - docker tag udagram-frontend amirbahrami67/udagram-frontend:latest # tag udagram-frontend
+  - cd reverse-proxy && docker build -t udagram-reverse-proxy . && cd .. # change directory to reverse-proxy and build docker image
+  - docker tag udagram-reverse-proxy amirbahrami67/udagram-reverse-proxy:latest # tag udagram-reverse-proxy
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push amirbahrami67/udagram-user-api
+  - docker push amirbahrami67/udagram-feed-api
+  - docker push amirbahrami67/udagram-frontend
+  - docker push amirbahrami67/udagram-reverse-proxy
 
