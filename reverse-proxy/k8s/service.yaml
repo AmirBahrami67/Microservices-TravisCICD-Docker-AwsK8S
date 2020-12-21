@@ -5,6 +5,7 @@ metadata:
     service: udagram-reverse-proxy
   name: udagram-reverse-proxy-svc
 spec:
+  type: LoadBalancer # this type makes the service external (accessible from outside of the cluster)
   ports:
   - name: "8080"
     port: 8080

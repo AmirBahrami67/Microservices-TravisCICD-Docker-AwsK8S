@@ -5,6 +5,7 @@ metadata:
   labels:
     run: udagram-frontend
 spec:
+  type: LoadBalancer # this type makes the service external (accessible from outside of the cluster)
   ports:
     - port: 8080
       protocol: TCP
