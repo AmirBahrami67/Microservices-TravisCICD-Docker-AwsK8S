@@ -5,9 +5,8 @@ services:
 install:
   - echo "nothing needs to be installed"
 
-# Scripts to be run such as tests
 before_script:
-  - echo "no tests yet"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
   - docker --version # print the version for logging
@@ -21,7 +20,6 @@ script:
   - docker tag udagram-reverse-proxy amirbahrami67/udagram-reverse-proxy:latest # tag udagram-reverse-proxy
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push amirbahrami67/udagram-user-api
   - docker push amirbahrami67/udagram-feed-api
   - docker push amirbahrami67/udagram-frontend

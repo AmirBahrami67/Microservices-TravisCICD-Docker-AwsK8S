@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: udagram-feed-api-svc
+  name: udagram-frontend-svc
   labels:
-    run: udagram-feed-api
+    run: udagram-frontend
 spec:
   ports:
     - port: 8080
       protocol: TCP
   selector:
-    run: udagram-feed-api
+    run: udagram-frontend
